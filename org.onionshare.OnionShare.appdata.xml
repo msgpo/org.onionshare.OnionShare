@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.onionshare.OnionShare</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>OnionShare</name>
+  <summary>Securely and anonymously send and receive files</summary>
+  <description>
+    <p>
+      OnionShare is an open source tool for securely and anonymously sending and receiving files using Tor onion
+      services. It works by starting a web server directly on your computer and making it accessible as an unguessable
+      Tor web address that others can load in Tor Browser to download files from you, or upload files to you. It doesn't
+      require setting up a separate server, using a third party file-sharing service, or even logging into an account.
+    </p>
+    <p>
+      Unlike services like email, Google Drive, DropBox, WeTransfer, or nearly any other way people typically send files
+      to each other, when you use OnionShare you don't give any companies access to the files that you're sharing. So
+      long as you share the unguessable web address in a secure way (like pasting it in an encrypted messaging app), no
+      one but you and the person you're sharing with can access the files.
+    </p>
+  </description>
+  <launchable type="desktop-id">org.onionshare.OnionShare.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/micahflee/onionshare/develop/screenshots/onionshare-share-server.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/micahflee/onionshare/develop/screenshots/onionshare-share-client.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/micahflee/onionshare/develop/screenshots/onionshare-receive-server.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/micahflee/onionshare/develop/screenshots/onionshare-receive-client.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="bugtracker">https://github.com/micahflee/onionshare/issues/</url>
+  <url type="help">https://github.com/micahflee/onionshare/wiki/</url>
+  <url type="homepage">https://onionshare.org/</url>
+  <developer_name>Micah Lee</developer_name>
+  <update_contact>micah@micahflee.com</update_contact>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release type="stable" date="2019-05-07" version="2.1" />
+  </releases>
+</component>

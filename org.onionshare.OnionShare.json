@@ -1,0 +1,87 @@
+{
+  "app-id": "org.onionshare.OnionShare",
+  "command": "onionshare",
+  "rename-desktop-file": "onionshare.desktop",
+  "rename-icon": "onionshare",
+  "runtime": "org.kde.Platform",
+  "runtime-version": "5.12",
+  "sdk": "org.kde.Sdk",
+  "separate-locales": false,
+  "finish-args": [
+    "--device=dri",
+    "--share=ipc",
+    "--share=network",
+    "--socket=wayland",
+    "--socket=x11",
+    "--talk-name=org.freedesktop.Flatpak",
+    "--talk-name=org.freedesktop.Notifications",
+    "--talk-name=org.freedesktop.secrets"
+  ],
+  "modules": [
+    {
+      "name": "pyqt5",
+      "config-opts": [
+        "--disable-static",
+        "--enable-x11"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "sha256": "3718ce847d824090fd5f95ff3f13847ee75c2507368d4cbaeb48338f506e59bf",
+          "url": "https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.12.1/PyQt5_gpl-5.12.1.tar.gz"
+        },
+        {
+          "type": "script",
+          "commands": [
+            "python3 configure.py --disable QtBluetooth --disable QtDesigner --disable QtHelp --disable QtLocation --disable QtMacExtras --disable QtNfc --disable QtPositioning --disable QtPrintSupport --disable QtSensors --disable QtSerialPort --disable QtSql --disable QtTest --disable QtWinExtras --assume-shared --confirm-license --no-designer-plugin --no-docstrings --no-qml-plugin --no-tools --destdir ${FLATPAK_DEST}/lib/python3.7/site-packages/ --qsci-api-destdir=${FLATPAK_DEST}/qsci/ --sip=${FLATPAK_DEST}/bin/sip --sip-incdir=${FLATPAK_DEST}/include/ --sipdir=${FLATPAK_DEST}/share/sip/ --stubsdir ${FLATPAK_DEST}/lib/python3.7/site-packages/ --sysroot=${FLATPAK_DEST}/ QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.7m/' QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.7m/'"
+          ],
+          "dest-filename": "configure"
+        }
+      ],
+      "modules": [
+        {
+          "name": "sip",
+          "cleanup": [
+            "/bin",
+            "/include"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "sha256": "2b5c0b2c0266b467b365c21376d50dde61a3236722ab87ff1e8dacec283eb610",
+              "url": "https://www.riverbankcomputing.com/static/Downloads/sip/4.19.15/sip-4.19.15.tar.gz"
+            },
+            {
+              "type": "script",
+              "commands": [
+                "python3 configure.py --bindir ${FLATPAK_DEST}/bin/ --destdir ${FLATPAK_DEST}/lib/python3.7/site-packages/ --incdir ${FLATPAK_DEST}/include/ --sipdir ${FLATPAK_DEST}/share/sip/ --stubsdir ${FLATPAK_DEST}/lib/python3.7/site-packages/ --sip-module PyQt5.sip"
+              ],
+              "dest-filename": "configure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "onionshare",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 setup.py install --prefix=${FLATPAK_DEST}",
+        "install -D -m0755 onionshare.sh ${FLATPAK_DEST}/bin/onionshare",
+        "install -D -m0644 install/onionshare.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "sha256": "b412bc1e9d08deaa2805cfc9532b556928fa7b332d249189fb0887f27d587ddb",
+          "url": "https://github.com/micahflee/onionshare/archive/v2.1.tar.gz"
+        },
+        {
+          "type": "script",
+          "commands": ["exec /app/bin/onionshare-gui \"$@\""],
+          "dest-filename": "onionshare.sh"
+        }
+      ]
+    }
+  ]
+}
