@@ -61,9 +61,27 @@
       ]
     },
     {
-      "name": "pypi-dependencies",
+      "name": "onionshare",
       "buildsystem": "simple",
-      "build-commands": [],
+      "build-commands": [
+        "python3 setup.py install --prefix=${FLATPAK_DEST}",
+        "install -D -m0755 onionshare.sh ${FLATPAK_DEST}/bin/onionshare",
+        "install -D -m0644 install/org.onionshare.OnionShare.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "sha256": "3b9cbbedc6baabb58a409c4e0185a9d91fbcea7adca964532f147c552c61995e",
+          "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
+        },
+        {
+          "type": "script",
+          "commands": [
+            "exec /app/bin/onionshare-gui \"$@\""
+          ],
+          "dest-filename": "onionshare.sh"
+        }
+      ],
       "modules": [
         {
           "name": "python3-Click",
@@ -237,29 +255,6 @@
               "sha256": "9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31"
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "onionshare",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=${FLATPAK_DEST}",
-        "install -D -m0755 onionshare.sh ${FLATPAK_DEST}/bin/onionshare",
-        "install -D -m0644 install/org.onionshare.OnionShare.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "sha256": "3b9cbbedc6baabb58a409c4e0185a9d91fbcea7adca964532f147c552c61995e",
-          "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
-        },
-        {
-          "type": "script",
-          "commands": [
-            "exec /app/bin/onionshare-gui \"$@\""
-          ],
-          "dest-filename": "onionshare.sh"
         }
       ]
     }
