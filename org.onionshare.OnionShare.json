@@ -61,6 +61,40 @@
       ]
     },
     {
+      "name": "tor",
+      "buildsystem": "simple",
+      "build-commands": [
+        "./configure --prefix=${FLATPAK_DEST}",
+        "make",
+        "make install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "sha256": "2a88524ce426079fb9b828bc1b789f2c8ade3ed53c130851102debc3518bed71",
+          "url": "https://dist.torproject.org/tor-0.4.1.6.tar.gz"
+        }
+      ],
+      "modules": [
+        {
+          "name": "libevent",
+          "buildsystem": "simple",
+          "build-commands": [
+            "./configure --prefix=${FLATPAK_DEST}",
+            "make",
+            "make install"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz",
+              "sha256": "a65bac6202ea8c5609fd5c7e480e6d25de467ea1917c08290c521752f147283d"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "onionshare",
       "buildsystem": "simple",
       "build-commands": [
@@ -71,7 +105,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "3b9cbbedc6baabb58a409c4e0185a9d91fbcea7adca964532f147c552c61995e",
+          "sha256": "6fdf8287460470cbcaa448a3e79d194d72295908002d49e3882a99adcd3bacc3",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
