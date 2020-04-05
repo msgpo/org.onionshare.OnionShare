@@ -1,15 +1,12 @@
-= OnionShare
-:uri-onionshare-home: https://onionshare.org/
-
-{uri-onionshare-home}[OnionShare^] is an open source tool that lets you securely and anonymously share a file of any
+# OnionShare
+[OnionShare](https://onionshare.org/) is an open source tool that lets you securely and anonymously share a file of any
 size.
 
-== Build, Install and Run Flatpak (locally)
+## Build, Install and Run Flatpak (locally)
 
 Assuming `flatpak`, `flatpak-builder`, and `git` packages are installed, run the following commands:
 
-[source,shell]
-----
+```sh
 $ git clone https://github.com/flathub/org.onionshare.OnionShare.git
 $ cd org.onionshare.OnionShare/
 $ flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -22,12 +19,8 @@ $ flatpak uninstall --delete-data --user org.onionshare.OnionShare
 $ flatpak uninstall --unused --user
 $ rm -rf .flatpak-builder/ build/
 $ flatpak remote-delete --user flathub
-----
+```
 
-== Roadmap
-:uri-issues-tracker: https://github.com/flathub/org.onionshare.OnionShare/issues/
+## Roadmap
 
-See the {uri-issues-tracker}[Issues^] tracker.
-
-// https://www.riverbankcomputing.com/static/Docs/PyQt5/installation.html#configuring-pyqt5
-// https://www.riverbankcomputing.com/static/Docs/sip/installation.html#configuring
+See the [Issues](https://github.com/flathub/org.onionshare.OnionShare/issues/) tracker.
