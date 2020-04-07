@@ -13,7 +13,10 @@
     "--socket=x11",
     "--talk-name=org.freedesktop.Flatpak",
     "--talk-name=org.freedesktop.Notifications",
-    "--talk-name=org.freedesktop.secrets"
+    "--talk-name=org.freedesktop.secrets",
+    "--filesystem=home:ro",
+    "--filesystem=~/OnionShare:rw",
+    "--filesystem=xdg-config/onionshare:rw"
   ],
   "modules": [
     {
@@ -105,7 +108,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "12620baab0d97a01c34c44edda4906d20f531548db25e1fe9f69344794cbe88d",
+          "sha256": "55aa48f3b635e3f3fc01b028654094c59c4ef46db7d6ef4c06c3735aae04cb0e",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
