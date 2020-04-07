@@ -108,7 +108,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "55aa48f3b635e3f3fc01b028654094c59c4ef46db7d6ef4c06c3735aae04cb0e",
+          "sha256": "902c9df91b0cf9a24e6c6106f9b8f0915b838aa57aa3dbca8969bf706f8a191a",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
@@ -124,7 +124,7 @@
           "name": "poetry-deps",
           "buildsystem": "simple",
           "build-commands": [
-            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pathtools pefile pluggy psutil py pycryptodome pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt requests six stem urllib3 watchdog wcwidth werkzeug zipp"
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pefile pluggy py pycryptodome pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt requests six stem urllib3 wcwidth werkzeug zipp"
           ],
           "sources": [
             {
@@ -224,11 +224,6 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/e7/7f/470d6fcdf23f9f3518f6b0b76be9df16dcc8630ad409947f8be2eb0ed13a/pathtools-0.1.2.tar.gz",
-              "sha256": "7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0"
-            },
-            {
-              "type": "file",
               "url": "https://files.pythonhosted.org/packages/36/58/acf7f35859d541985f0a6ea3c34baaefbfaee23642cf11e85fe36453ae77/pefile-2019.4.18.tar.gz",
               "sha256": "a5d6e8305c6b210849b47a6174ddf9c452b2888340b8177874b862ba6c207645"
             },
@@ -236,11 +231,6 @@
               "type": "file",
               "url": "https://files.pythonhosted.org/packages/a0/28/85c7aa31b80d150b772fbe4a229487bc6644da9ccb7e427dd8cc60cb8a62/pluggy-0.13.1-py2.py3-none-any.whl",
               "sha256": "966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"
-            },
-            {
-              "type": "file",
-              "url": "https://files.pythonhosted.org/packages/c4/b8/3512f0e93e0db23a71d82485ba256071ebef99b227351f0f5540f744af41/psutil-5.7.0.tar.gz",
-              "sha256": "685ec16ca14d079455892f25bd124df26ff9137664af445563c1bd36629b5e0e"
             },
             {
               "type": "file",
@@ -306,11 +296,6 @@
               "type": "file",
               "url": "https://files.pythonhosted.org/packages/e8/74/6e4f91745020f967d09332bb2b8b9b10090957334692eb88ea4afe91b77f/urllib3-1.25.8-py2.py3-none-any.whl",
               "sha256": "2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc"
-            },
-            {
-              "type": "file",
-              "url": "https://files.pythonhosted.org/packages/73/c3/ed6d992006837e011baca89476a4bbffb0a91602432f73bd4473816c76e2/watchdog-0.10.2.tar.gz",
-              "sha256": "c560efb643faed5ef28784b2245cf8874f939569717a4a12826a173ac644456b"
             },
             {
               "type": "file",
