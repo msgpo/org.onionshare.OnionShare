@@ -4,6 +4,9 @@
   "runtime": "org.kde.Platform",
   "runtime-version": "5.14",
   "sdk": "org.kde.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.golang"
+  ],
   "separate-locales": false,
   "finish-args": [
     "--device=dri",
@@ -17,6 +20,10 @@
     "--filesystem=home:ro",
     "--filesystem=~/OnionShare:create",
     "--filesystem=xdg-config/onionshare:create"
+  ],
+  "cleanup": [
+    "/go",
+    "/bin/scripts"
   ],
   "modules": [
     {
@@ -93,6 +100,104 @@
               "url": "https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz",
               "sha256": "a65bac6202ea8c5609fd5c7e480e6d25de467ea1917c08290c521752f147283d"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "obfs4proxy",
+      "buildsystem": "simple",
+      "build-commands": [
+        "cp -rpv go/* /app/go/",
+        "cat /app/bin/scripts/my_enable.sh",
+        "/app/bin/scripts/build.sh gitlab.com/yawning/obfs4.git/obfs4proxy"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.com/yawning/obfs4.git",
+          "commit": "2d8f3c8bbfd7a7ca931738a64c2f6e97b7332d9e",
+          "dest": "go/src/gitlab.com/yawning/obfs4.git"
+        },
+        {
+          "type": "git",
+          "url": "https://gitlab.com/yawning/bsaes.git",
+          "commit": "0a714cd429ec754482b4001e918db30cd2094405",
+          "dest": "go/src/gitlab.com/yawning/bsaes.git"
+        },
+        {
+          "type": "git",
+          "url": "https://gitlab.com/yawning/utls.git",
+          "commit": "fe82b9857bc0ca9aad7aeda2d863ee2ab3f5a93f",
+          "dest": "go/src/gitlab.com/yawning/utls.git"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/dchest/siphash.git",
+          "commit": "34f201214d993633bb24f418ba11736ab8b55aa7",
+          "dest": "go/src/github.com/dchest/siphash.git"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/dsnet/compress.git",
+          "commit": "da652975a8eea9fa0735aba8056747a751db0bd3",
+          "dest": "go/src/github.com/dsnet/compress.git"
+        },
+        {
+          "type": "git",
+          "url": "https://git.torproject.org/pluggable-transports/goptlib.git",
+          "commit": "15f83653abbcced9003c96cc14edc5b2f82e0e0e",
+          "dest": "go/src/git.torproject.org/pluggable-transports/goptlib.git"
+        },
+        {
+          "type": "git",
+          "url": "https://go.googlesource.com/crypto",
+          "commit": "056763e48d71961566155f089ac0f02f1dda9b5a",
+          "dest": "go/src/golang.org/x/crypto"
+        },
+        {
+          "type": "git",
+          "url": "https://go.googlesource.com/net",
+          "commit": "d3edc9973b7eb1fb302b0ff2c62357091cea9a30",
+          "dest": "go/src/golang.org/x/net"
+        },
+        {
+          "type": "git",
+          "url": "https://go.googlesource.com/sys",
+          "commit": "59c9f1ba88faf592b225274f69c5ef1e4ebacf82",
+          "dest": "go/src/golang.org/x/sys"
+        },
+        {
+          "type": "git",
+          "url": "https://go.googlesource.com/text",
+          "commit": "06d492aade888ab8698aad35476286b7b555c961",
+          "dest": "go/src/golang.org/x/text"
+        }
+      ],
+      "modules": [
+        {
+          "name": "scripts",
+          "sources": [
+            {
+              "type": "script",
+              "commands": [
+                ". /usr/lib/sdk/golang/enable.sh;  export GOPATH=/app/go"
+              ],
+              "dest-filename": "my_enable.sh"
+            },
+            {
+              "type": "script",
+              "commands": [
+                ". /app/bin/scripts/my_enable.sh; cd /app/go/src/$1; go build"
+              ],
+              "dest-filename": "build.sh"
+            }
+          ],
+          "buildsystem": "simple",
+          "build-commands": [
+            "mkdir -p /app/go/{src,pkg,bin} # make go workspace",
+            "install -d /app/bin/scripts",
+            "cp *.sh /app/bin/scripts/"
           ]
         }
       ]
