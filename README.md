@@ -40,6 +40,21 @@ cd flatpak-builder-tools/poetry
 # (make sure to manually remove pyinstaller)
 ```
 
+You must also manually add `setuptools` and `wheel`:
+
+```
+{
+    "type": "file",
+    "url": "https://files.pythonhosted.org/packages/e9/93/4860cebd5ad3ff2664ad3c966490ccb46e3b88458b2095145bca11727ca4/setuptools-47.3.1-py3-none-any.whl",
+    "sha256": "4ba6f9789ea243a6b8ba57da81f75a53494456117810436fd9277a74d1c915d1"
+},
+{
+    "type": "file",
+    "url": "https://files.pythonhosted.org/packages/8c/23/848298cccf8e40f5bbb59009b32848a4c38f4e7f3364297ab3c3e2e2cd14/wheel-0.34.2-py2.py3-none-any.whl",
+    "sha256": "df277cb51e61359aba502208d680f90c0493adec6f0e848af94948778aed386e"
+}
+```
+
 ## Roadmap
 
 See the [Issues](https://github.com/flathub/org.onionshare.OnionShare/issues/) tracker.

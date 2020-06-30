@@ -107,99 +107,80 @@
     {
       "name": "obfs4proxy",
       "buildsystem": "simple",
+      "build-options": {
+        "env": {
+          "GOBIN": "/app/bin/"
+        },
+        "build-args": [
+          "--share=network"
+        ]
+      },
       "build-commands": [
-        "cp -rpv go/* /app/go/",
-        "cat /app/bin/scripts/my_enable.sh",
-        "/app/bin/scripts/build.sh gitlab.com/yawning/obfs4.git/obfs4proxy"
+        ". /usr/lib/sdk/golang/enable.sh; export GOPATH=$PWD; go get gitlab.com/yawning/obfs4.git/obfs4proxy; go install gitlab.com/yawning/obfs4.git/obfs4proxy"
       ],
       "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.com/yawning/obfs4.git",
-          "commit": "2d8f3c8bbfd7a7ca931738a64c2f6e97b7332d9e",
-          "dest": "go/src/gitlab.com/yawning/obfs4.git"
-        },
-        {
-          "type": "git",
-          "url": "https://gitlab.com/yawning/bsaes.git",
-          "commit": "0a714cd429ec754482b4001e918db30cd2094405",
-          "dest": "go/src/gitlab.com/yawning/bsaes.git"
-        },
-        {
-          "type": "git",
-          "url": "https://gitlab.com/yawning/utls.git",
-          "commit": "fe82b9857bc0ca9aad7aeda2d863ee2ab3f5a93f",
-          "dest": "go/src/gitlab.com/yawning/utls.git"
-        },
-        {
-          "type": "git",
-          "url": "https://github.com/dchest/siphash.git",
-          "commit": "34f201214d993633bb24f418ba11736ab8b55aa7",
-          "dest": "go/src/github.com/dchest/siphash.git"
-        },
-        {
-          "type": "git",
-          "url": "https://github.com/dsnet/compress.git",
-          "commit": "da652975a8eea9fa0735aba8056747a751db0bd3",
-          "dest": "go/src/github.com/dsnet/compress.git"
-        },
-        {
-          "type": "git",
-          "url": "https://git.torproject.org/pluggable-transports/goptlib.git",
-          "commit": "15f83653abbcced9003c96cc14edc5b2f82e0e0e",
-          "dest": "go/src/git.torproject.org/pluggable-transports/goptlib.git"
-        },
-        {
-          "type": "git",
-          "url": "https://go.googlesource.com/crypto",
-          "commit": "056763e48d71961566155f089ac0f02f1dda9b5a",
-          "dest": "go/src/golang.org/x/crypto"
-        },
-        {
-          "type": "git",
-          "url": "https://go.googlesource.com/net",
-          "commit": "d3edc9973b7eb1fb302b0ff2c62357091cea9a30",
-          "dest": "go/src/golang.org/x/net"
-        },
-        {
-          "type": "git",
-          "url": "https://go.googlesource.com/sys",
-          "commit": "59c9f1ba88faf592b225274f69c5ef1e4ebacf82",
-          "dest": "go/src/golang.org/x/sys"
-        },
-        {
-          "type": "git",
-          "url": "https://go.googlesource.com/text",
-          "commit": "06d492aade888ab8698aad35476286b7b555c961",
-          "dest": "go/src/golang.org/x/text"
-        }
-      ],
-      "modules": [
-        {
-          "name": "scripts",
-          "sources": [
-            {
-              "type": "script",
-              "commands": [
-                ". /usr/lib/sdk/golang/enable.sh;  export GOPATH=/app/go"
-              ],
-              "dest-filename": "my_enable.sh"
-            },
-            {
-              "type": "script",
-              "commands": [
-                ". /app/bin/scripts/my_enable.sh; cd /app/go/src/$1; go build"
-              ],
-              "dest-filename": "build.sh"
-            }
-          ],
-          "buildsystem": "simple",
-          "build-commands": [
-            "mkdir -p /app/go/{src,pkg,bin} # make go workspace",
-            "install -d /app/bin/scripts",
-            "cp *.sh /app/bin/scripts/"
-          ]
-        }
+        [
+          {
+            "type": "git",
+            "url": "https://git.torproject.org/pluggable-transports/goptlib",
+            "commit": "781a46c66d2ddbc3509354ae7f1fccab74cb9927",
+            "dest": "src/git.torproject.org/pluggable-transports/goptlib.git"
+          },
+          {
+            "type": "git",
+            "url": "https://gitlab.com/yawning/obfs4",
+            "commit": "2d8f3c8bbfd7a7ca931738a64c2f6e97b7332d9e",
+            "dest": "src/gitlab.com/yawning/obfs4.git"
+          },
+          {
+            "type": "git",
+            "url": "https://gitlab.com/yawning/bsaes",
+            "commit": "0a714cd429ec754482b4001e918db30cd2094405",
+            "dest": "src/gitlab.com/yawning/bsaes.git"
+          },
+          {
+            "type": "git",
+            "url": "https://gitlab.com/yawning/utls",
+            "commit": "2dd4f38ff9e07464eb2748cc017eac1355e42251",
+            "dest": "src/gitlab.com/yawning/utls.git"
+          },
+          {
+            "type": "git",
+            "url": "https://go.googlesource.com/sys",
+            "commit": "ddb9806d33aed8dbaac1cd6f1cba58952e87f933",
+            "dest": "src/golang.org/x/sys"
+          },
+          {
+            "type": "git",
+            "url": "https://go.googlesource.com/text",
+            "commit": "23ae387dee1f90d29a23c0e87ee0b46038fbed0e",
+            "dest": "src/golang.org/x/text"
+          },
+          {
+            "type": "git",
+            "url": "https://go.googlesource.com/net",
+            "commit": "4c5254603344ea4a8ae4bed7e296a9588303e14f",
+            "dest": "src/golang.org/x/net"
+          },
+          {
+            "type": "git",
+            "url": "https://go.googlesource.com/crypto",
+            "commit": "75b288015ac94e66e3d6715fb68a9b41bf046ec2",
+            "dest": "src/golang.org/x/crypto"
+          },
+          {
+            "type": "git",
+            "url": "https://github.com/dsnet/compress",
+            "commit": "da652975a8eea9fa0735aba8056747a751db0bd3",
+            "dest": "src/github.com/dsnet/compress"
+          },
+          {
+            "type": "git",
+            "url": "https://github.com/dchest/siphash",
+            "commit": "34f201214d993633bb24f418ba11736ab8b55aa7",
+            "dest": "src/github.com/dchest/siphash"
+          }
+        ]
       ]
     },
     {
@@ -213,7 +194,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "c79c34a725b6bd79f56ecc870368133189896e478cf1cc757d71f447ffadada6",
+          "sha256": "ef194e15ee693a90783b67df1a7695eca9cd68ade5ea5b76fc8133929c377619",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
@@ -229,7 +210,7 @@
           "name": "poetry-deps",
           "buildsystem": "simple",
           "build-commands": [
-            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pefile pluggy py pycryptodome pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt requests six stem urllib3 wcwidth werkzeug zipp"
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pathtools pefile pluggy psutil py pycryptodome pyinstaller pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt qrcode requests six stem urllib3 watchdog wcwidth werkzeug zipp setuptools wheel"
           ],
           "sources": [
             {
@@ -239,8 +220,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/ec/0f/cd484ac8820fed363b374af30049adc8fd13065720fd4f4c6be8a2309da7/atomicwrites-1.3.0.tar.gz",
-              "sha256": "75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"
+              "url": "https://files.pythonhosted.org/packages/2c/a0/da5f49008ec6e9a658dbf5d7310a4debd397bce0b4db03cf8a410066bb87/atomicwrites-1.4.0-py2.py3-none-any.whl",
+              "sha256": "6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"
             },
             {
               "type": "file",
@@ -249,8 +230,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/57/2b/26e37a4b034800c960a00c4e1b3d9ca5d7014e983e6e729e33ea2f36426c/certifi-2020.4.5.1-py2.py3-none-any.whl",
-              "sha256": "1d987a998c75633c40847cc966fcf5904906c920a7f17ef374f5aa4282abd304"
+              "url": "https://files.pythonhosted.org/packages/5e/c4/6c4fe722df5343c33226f0b4e0bb042e4dc13483228b4718baf286f86d87/certifi-2020.6.20-py2.py3-none-any.whl",
+              "sha256": "8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"
             },
             {
               "type": "file",
@@ -259,8 +240,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/dd/c0/4d8f43a9b16e289f36478422031b8a63b54b6ac3b1ba605d602f10dd54d6/click-7.1.1-py2.py3-none-any.whl",
-              "sha256": "e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"
+              "url": "https://files.pythonhosted.org/packages/d2/3d/fa76db83bf75c4f8d338c2fd15c8d33fdd7ad23a9b5e57eb6c5de26b430e/click-7.1.2-py2.py3-none-any.whl",
+              "sha256": "dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"
             },
             {
               "type": "file",
@@ -279,8 +260,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/b9/fd/89fc9aa163b5a7aa809fac0835502c2b66f48a5114a73df7e2a104cc645f/Flask_HTTPAuth-3.3.0-py2.py3-none-any.whl",
-              "sha256": "0149953720489407e51ec24bc2f86273597b7973d71cd51f9443bd0e2a89bd72"
+              "url": "https://files.pythonhosted.org/packages/e1/a8/c1cda654d5da7ba45bc0bd567cd7e2d2508997decfae5191813f31c93b9e/Flask_HTTPAuth-4.1.0-py2.py3-none-any.whl",
+              "sha256": "29e0288869a213c7387f0323b6bf2c7191584fb1da8aa024d9af118e5cd70de7"
             },
             {
               "type": "file",
@@ -289,13 +270,13 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/89/e3/afebe61c546d18fb1709a61bee788254b40e736cff7271c7de5de2dc4128/idna-2.9-py2.py3-none-any.whl",
-              "sha256": "a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"
+              "url": "https://files.pythonhosted.org/packages/a2/38/928ddce2273eaa564f6f50de919327bf3a00f091b5baba8dfa9460f3a8a8/idna-2.10-py2.py3-none-any.whl",
+              "sha256": "b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/ad/e4/891bfcaf868ccabc619942f27940c77a8a4b45fd8367098955bb7e152fb1/importlib_metadata-1.6.0-py2.py3-none-any.whl",
-              "sha256": "2a688cbaa90e0cc587f1df48bdc97a6eadccdcd9c35fb3f976a09e3b5016d90f"
+              "url": "https://files.pythonhosted.org/packages/8e/58/cdea07eb51fc2b906db0968a94700866fc46249bdc75cac23f9d13168929/importlib_metadata-1.7.0-py2.py3-none-any.whl",
+              "sha256": "dc15b2969b4ce36305c51eebe62d418ac7791e9a157911d58bfb1f9ccd8e2070"
             },
             {
               "type": "file",
@@ -304,8 +285,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/27/24/4f35961e5c669e96f6559760042a55b9bcfcdb82b9bdb3c8753dbe042e35/Jinja2-2.11.1-py2.py3-none-any.whl",
-              "sha256": "b0eaf100007721b5c16c1fc1eecb87409464edc10469ddc9a22a27a99123be49"
+              "url": "https://files.pythonhosted.org/packages/30/9e/f663a2aa66a09d838042ae1a2c5659828bb9b41ea3a6efa20a20fd92b121/Jinja2-2.11.2-py2.py3-none-any.whl",
+              "sha256": "f0a4641d3cf955324a89c04f3d94663aa4d638abe8f733ecd3582848e1c37035"
             },
             {
               "type": "file",
@@ -319,13 +300,18 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/72/96/4297306cc270eef1e3461da034a3bebe7c84eff052326b130824e98fc3fb/more_itertools-8.2.0-py3-none-any.whl",
-              "sha256": "5dd8bcf33e5f9513ffa06d5ad33d78f31e1931ac9a18f33d37e77a180d393a7c"
+              "url": "https://files.pythonhosted.org/packages/ef/9b/6c35ec5483710492e21252465160ee508170159f7e0e2d6cd769022f52f6/more_itertools-8.4.0-py3-none-any.whl",
+              "sha256": "b78134b2063dd214000685165d81c154522c3ee0a1c0d4d113c80361c234c5a2"
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/62/0a/34641d2bf5c917c96db0ded85ae4da25b6cd922d6b794648d4e7e07c88e5/packaging-20.3-py2.py3-none-any.whl",
-              "sha256": "82f77b9bee21c1bafbf35a84905d604d5d1223801d639cf3ed140bd651c08752"
+              "url": "https://files.pythonhosted.org/packages/46/19/c5ab91b1b05cfe63cccd5cfc971db9214c6dd6ced54e33c30d5af1d2bc43/packaging-20.4-py2.py3-none-any.whl",
+              "sha256": "998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/e7/7f/470d6fcdf23f9f3518f6b0b76be9df16dcc8630ad409947f8be2eb0ed13a/pathtools-0.1.2.tar.gz",
+              "sha256": "7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0"
             },
             {
               "type": "file",
@@ -339,13 +325,23 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/99/8d/21e1767c009211a62a8e3067280bfce76e89c9f876180308515942304d2d/py-1.8.1-py2.py3-none-any.whl",
-              "sha256": "c20fdd83a5dbc0af9efd622bee9a5564e278f6380fffcacc43ba6f43db2813b0"
+              "url": "https://files.pythonhosted.org/packages/c4/b8/3512f0e93e0db23a71d82485ba256071ebef99b227351f0f5540f744af41/psutil-5.7.0.tar.gz",
+              "sha256": "685ec16ca14d079455892f25bd124df26ff9137664af445563c1bd36629b5e0e"
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/69/2a/298b2689bee8e88c502c7e85ba1c9f07c7e182ea91c705c449f693056c9f/pycryptodome-3.9.7.tar.gz",
-              "sha256": "f1add21b6d179179b3c177c33d18a2186a09cc0d3af41ff5ed3f377360b869f2"
+              "url": "https://files.pythonhosted.org/packages/68/0f/41a43535b52a81e4f29e420a151032d26f08b62206840c48d14b70e53376/py-1.9.0-py2.py3-none-any.whl",
+              "sha256": "366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/4c/2b/eddbfc56076fae8deccca274a5c70a9eb1e0b334da0a33f894a420d0fe93/pycryptodome-3.9.8.tar.gz",
+              "sha256": "0e24171cf01021bc5dc17d6a9d4f33a048f09d62cc3f62541e95ef104588bda4"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/3c/c9/c3f9bc64eb11eee6a824686deba6129884c8cbdf70e750661773b9865ee0/PyInstaller-3.6.tar.gz",
+              "sha256": "3730fa80d088f8bb7084d32480eb87cbb4ddb64123363763cf8f2a1378c1c4b7"
             },
             {
               "type": "file",
@@ -359,8 +355,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/32/24/1537d09deb3aee2e5c390cd456420a455ac47ef3f8ac323d8397af1c1c13/PyQt5_sip-12.7.2.tar.gz",
-              "sha256": "16a19b9f36985b8bff30b89fb8859d831713dd528fba5600563e36ff077960a2"
+              "url": "https://files.pythonhosted.org/packages/73/a0/0987d3c153b18fd5f7b190bdc71e8edd05ff65e9084efd1f4985c2b1dc0f/PyQt5_sip-12.8.0.tar.gz",
+              "sha256": "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
             },
             {
               "type": "file",
@@ -369,8 +365,8 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/c7/e2/c19c667f42f72716a7d03e8dd4d6f63f47d39feadd44cc1ee7ca3089862c/pytest-5.4.1-py3-none-any.whl",
-              "sha256": "0e5b30f5cb04e887b91b1ee519fa3d89049595f428c1db76e73bd7f17b09b172"
+              "url": "https://files.pythonhosted.org/packages/9f/f3/0a83558da436a081344aa6c8b85ea5b5f05071214106036ce341b7769b0b/pytest-5.4.3-py3-none-any.whl",
+              "sha256": "5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"
             },
             {
               "type": "file",
@@ -384,13 +380,18 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/1a/70/1935c770cb3be6e3a8b78ced23d7e0f3b187f5cbfab4749523ed65d7c9b1/requests-2.23.0-py2.py3-none-any.whl",
-              "sha256": "43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"
+              "url": "https://files.pythonhosted.org/packages/42/87/4a3a77e59ab7493d64da1f69bf1c2e899a4cf81e51b2baa855e8cc8115be/qrcode-6.1-py2.py3-none-any.whl",
+              "sha256": "3996ee560fc39532910603704c82980ff6d4d5d629f9c3f25f34174ce8606cf5"
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/65/eb/1f97cb97bfc2390a276969c6fae16075da282f5058082d4cb10c6c5c1dba/six-1.14.0-py2.py3-none-any.whl",
-              "sha256": "8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"
+              "url": "https://files.pythonhosted.org/packages/45/1e/0c169c6a5381e241ba7404532c16a21d86ab872c9bed8bdcd4c423954103/requests-2.24.0-py2.py3-none-any.whl",
+              "sha256": "fe75cc94a9443b9246fc7049224f75604b113c36acb93f87b80ed42c44cbb898"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/ee/ff/48bde5c0f013094d729fe4b0316ba2a24774b3ff1c52d924a8a4cb04078a/six-1.15.0-py2.py3-none-any.whl",
+              "sha256": "8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"
             },
             {
               "type": "file",
@@ -399,13 +400,18 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/e8/74/6e4f91745020f967d09332bb2b8b9b10090957334692eb88ea4afe91b77f/urllib3-1.25.8-py2.py3-none-any.whl",
-              "sha256": "2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc"
+              "url": "https://files.pythonhosted.org/packages/e1/e5/df302e8017440f111c11cc41a6b432838672f5a70aa29227bf58149dc72f/urllib3-1.25.9-py2.py3-none-any.whl",
+              "sha256": "88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/f6/d5/1ecdac957e3ea12c1b319fcdee8b6917ffaff8b4644d673c4d72d2f20b49/wcwidth-0.1.9-py2.py3-none-any.whl",
-              "sha256": "cafe2186b3c009a04067022ce1dcd79cb38d8d65ee4f4791b8888d6599d1bbe1"
+              "url": "https://files.pythonhosted.org/packages/0e/06/121302598a4fc01aca942d937f4a2c33430b7181137b35758913a8db10ad/watchdog-0.10.3.tar.gz",
+              "sha256": "4214e1379d128b0588021880ccaf40317ee156d4603ac388b9adcf29165e0c04"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/59/7c/e39aca596badaf1b78e8f547c807b04dae603a433d3e7a7e04d67f2ef3e5/wcwidth-0.2.5-py2.py3-none-any.whl",
+              "sha256": "beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"
             },
             {
               "type": "file",
@@ -416,6 +422,16 @@
               "type": "file",
               "url": "https://files.pythonhosted.org/packages/b2/34/bfcb43cc0ba81f527bc4f40ef41ba2ff4080e047acb0586b56b3d017ace4/zipp-3.1.0-py3-none-any.whl",
               "sha256": "aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/e9/93/4860cebd5ad3ff2664ad3c966490ccb46e3b88458b2095145bca11727ca4/setuptools-47.3.1-py3-none-any.whl",
+              "sha256": "4ba6f9789ea243a6b8ba57da81f75a53494456117810436fd9277a74d1c915d1"
+            },
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/8c/23/848298cccf8e40f5bbb59009b32848a4c38f4e7f3364297ab3c3e2e2cd14/wheel-0.34.2-py2.py3-none-any.whl",
+              "sha256": "df277cb51e61359aba502208d680f90c0493adec6f0e848af94948778aed386e"
             }
           ]
         }
