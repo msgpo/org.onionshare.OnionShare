@@ -110,13 +110,10 @@
       "build-options": {
         "env": {
           "GOBIN": "/app/bin/"
-        },
-        "build-args": [
-          "--share=network"
-        ]
+        }
       },
       "build-commands": [
-        ". /usr/lib/sdk/golang/enable.sh; export GOPATH=$PWD; go get gitlab.com/yawning/obfs4.git/obfs4proxy; go install gitlab.com/yawning/obfs4.git/obfs4proxy"
+        ". /usr/lib/sdk/golang/enable.sh; export GOPATH=$PWD; go install gitlab.com/yawning/obfs4.git/obfs4proxy"
       ],
       "sources": [
         [
@@ -194,7 +191,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "ef194e15ee693a90783b67df1a7695eca9cd68ade5ea5b76fc8133929c377619",
+          "sha256": "a484f3554f3b28cce17802d64a4c97029f1590430d6df2424602b268249d857c",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
