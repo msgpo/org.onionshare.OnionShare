@@ -26,6 +26,11 @@ flatpak remote-delete --user flathub
 
 ## Making a new release
 
+In `org.onionshare.OnionShare.json`:
+
+- In the `onionshare` module, update the source to use the correct git tag
+- Update `tor`, `libevent`, and `obfs4` dependencies, if necessary
+
 Build the latest poetry dependencies using [this script](https://github.com/flatpak/flatpak-builder-tools/tree/master/poetry).
 
 ```sh
