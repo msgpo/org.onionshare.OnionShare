@@ -205,7 +205,7 @@
           "name": "poetry-deps",
           "buildsystem": "simple",
           "build-commands": [
-            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pathtools pefile pluggy psutil py pycryptodome pyinstaller pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt qrcode requests six stem urllib3 watchdog wcwidth werkzeug zipp setuptools wheel"
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} altgraph atomicwrites attrs certifi chardet click colorama dis3 flask flask-httpauth future idna importlib-metadata itsdangerous jinja2 macholib markupsafe more-itertools packaging pathtools pefile pluggy py pycryptodome pyinstaller pyparsing pyqt5 pyqt5-sip pysocks pytest pytest-faulthandler pytest-qt qrcode requests six stem urllib3 wcwidth werkzeug zipp setuptools wheel"
           ],
           "sources": [
             {
@@ -320,11 +320,6 @@
             },
             {
               "type": "file",
-              "url": "https://files.pythonhosted.org/packages/c4/b8/3512f0e93e0db23a71d82485ba256071ebef99b227351f0f5540f744af41/psutil-5.7.0.tar.gz",
-              "sha256": "685ec16ca14d079455892f25bd124df26ff9137664af445563c1bd36629b5e0e"
-            },
-            {
-              "type": "file",
               "url": "https://files.pythonhosted.org/packages/68/0f/41a43535b52a81e4f29e420a151032d26f08b62206840c48d14b70e53376/py-1.9.0-py2.py3-none-any.whl",
               "sha256": "366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2"
             },
@@ -397,11 +392,6 @@
               "type": "file",
               "url": "https://files.pythonhosted.org/packages/e1/e5/df302e8017440f111c11cc41a6b432838672f5a70aa29227bf58149dc72f/urllib3-1.25.9-py2.py3-none-any.whl",
               "sha256": "88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"
-            },
-            {
-              "type": "file",
-              "url": "https://files.pythonhosted.org/packages/0e/06/121302598a4fc01aca942d937f4a2c33430b7181137b35758913a8db10ad/watchdog-0.10.3.tar.gz",
-              "sha256": "4214e1379d128b0588021880ccaf40317ee156d4603ac388b9adcf29165e0c04"
             },
             {
               "type": "file",
