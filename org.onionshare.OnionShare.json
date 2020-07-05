@@ -189,7 +189,7 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "a5136f9a149a10b36a692d939e21b0beabd1dbdc395b3de6cc0cdab8d15a0ba6",
+          "sha256": "13e14ecf4b48f8e855f0ed8c5bce7484d9ef6a1b0ffb9ad20da08561244f1510",
           "url": "https://github.com/micahflee/onionshare/archive/910_flatpak.zip"
         },
         {
